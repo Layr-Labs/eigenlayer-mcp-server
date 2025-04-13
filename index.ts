@@ -74,13 +74,14 @@ server.tool(
           },
         ],
       };
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("Error:", err);
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       return {
         content: [
           {
             type: "text",
-            text: `Error fetching EigenLayer documentation: ${err.message}`,
+            text: `Error fetching EigenLayer documentation: ${errorMessage}`,
           },
         ],
       };
@@ -142,13 +143,14 @@ server.tool(
           },
         ],
       };
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("Error:", err);
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       return {
         content: [
           {
             type: "text",
-            text: `Error listing EigenLayer documentation sections: ${err.message}`,
+            text: `Error listing EigenLayer documentation sections: ${errorMessage}`,
           },
         ],
       };

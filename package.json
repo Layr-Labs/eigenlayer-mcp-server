@@ -1,29 +1,24 @@
+
 {
   "name": "eigenlayer-mcp-server",
   "version": "1.0.0",
   "description": "Model Context Protocol (MCP) Server for EigenLayer",
-  "main": "index.js",
-  "type": "module",
+  "private": true,
   "scripts": {
-    "start": "node --loader ts-node/esm index.ts",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint . --ext .ts"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
-  "keywords": ["eigenlayer", "mcp", "server"],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0",
-    "dotenv": "^16.3.1",
-    "zod": "^3.22.4"
+    "@modelcontextprotocol/sdk": "^1.8.0",
+    "next": "15.2.4",
+    "redis": "^4.7.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@types/node": "^22.13.10",
-    "typescript": "^5.3.3",
-    "ts-node": "^10.9.2",
-    "eslint": "^8.56.0",
-    "@typescript-eslint/eslint-plugin": "^6.19.1",
-    "@typescript-eslint/parser": "^6.19.1"
-  }
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@8.15.7+sha512.c85cd21b6da10332156b1ca2aa79c0a61ee7ad2eb0453b88ab299289e9e8ca93e6091232b25c07cbf61f6df77128d9c849e5c9ac6e44854dbd211c49f3a67adc"
 }
