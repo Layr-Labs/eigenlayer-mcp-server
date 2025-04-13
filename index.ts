@@ -1,27 +1,37 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import 'dotenv/config'
+import 'dotenv/config';
 
 const server = new McpServer({
-  name: "EigenLayer AVS service",
+  name: "EigenLayer Documentation Service",
   version: "1.0.0",
 });
 
 server.tool(
-  "getAVSs",
+  "getEigenDocs",
   {
-    fullPrompt: z.string().describe("The complete user query about AVS data"),
-    avsName: z.string().optional().describe("Optional specific AVS name to focus on"),
+    query: z.string().describe("The query about EigenLayer documentation"),
+    docsPath: z.string().optional().describe("Optional specific documentation path to focus on"),
   },
-  async ({ fullPrompt, avsName }) => {
+  async ({ query, docsPath }) => {
     try {
-      const response = await fetch('https://api.eigenexplorer.com/avs', {
-        headers: {
-          'X-API-Token': process.env.EIGEN_EXPLORER_API_KEY || '',
-        }
-      })
-      const json = await response.json()
+      // Base URL for EigenLayer documentation
+      const baseUrl = "https://docs.eigenlayer.xyz";
+      
+      // Construct the specific URL based on docsPath if provided
+      const url = docsPath ? `${baseUrl}/${docsPath}` : baseUrl;
+      
+      // Fetch the documentation content
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch documentation: ${response.status}`);
+      }
+      
+      const htmlContent = await response.text();
+      
+      // Process with Claude to extract relevant information
       const claudeResponse = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: {
@@ -30,44 +40,47 @@ server.tool(
           'anthropic-version': '2023-06-01'
         },
         body: JSON.stringify({
-          model: 'claude-3-7-sonnet-20250219',
+          model: 'claude-3-sonnet-20240229',
           max_tokens: 1024,
           messages: [
             {
               role: 'user',
               content: `
-                You are an EigenLayer AVS data assistant. Your task is to analyze AVS data and respond to user queries.
+                You are an EigenLayer documentation assistant. Your task is to extract and summarize relevant information from the EigenLayer documentation to answer the user's query.
                 
-                Here is the AVS data from the EigenExplorer API:
-                ${JSON.stringify(json, null, 2)}
+                Here is the HTML content from the EigenLayer documentation (${url}):
+                ---
+                ${htmlContent}
+                ---
                 
-                User query: ${fullPrompt}
-
-                AVS name: ${avsName}
+                User query: ${query}
                 
-                Provide a detailed, well-structured response that directly addresses the user's query about the AVS data.
-                Focus on being accurate, informative, and comprehensive.
+                Provide a detailed, well-structured response that directly addresses the user's query about EigenLayer.
+                Focus on being accurate, informative, and comprehensive. Include relevant details, definitions, and explanations.
+                If you cannot find information related to the query in the provided documentation, clearly state that.
               `
             }
           ]
         })
-      })
-      const claudeJson = await claudeResponse.json()
+      });
+      
+      const claudeJson = await claudeResponse.json();
 
       return {
         content: [
           {
             type: "text",
-            text: `${claudeJson.content[0].text}`,
+            text: claudeJson.content[0].text,
           },
         ],
       };
     } catch (err) {
+      console.error("Error:", err);
       return {
         content: [
           {
             type: "text",
-            text: `Error fetching data ...`,
+            text: `Error fetching EigenLayer documentation: ${err.message}`,
           },
         ],
       };
@@ -75,5 +88,80 @@ server.tool(
   },
 );
 
-const transport = new StdioServerTransport();
-await server.connect(transport);
+// Tool to list available documentation sections
+server.tool(
+  "listEigenDocsSections",
+  {},
+  async () => {
+    try {
+      const response = await fetch("https://docs.eigenlayer.xyz");
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch documentation: ${response.status}`);
+      }
+      
+      const htmlContent = await response.text();
+      
+      // Use Claude to extract the documentation structure
+      const claudeResponse = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': process.env.CLAUDE_API_KEY || '',
+          'anthropic-version': '2023-06-01'
+        },
+        body: JSON.stringify({
+          model: 'claude-3-sonnet-20240229',
+          max_tokens: 1024,
+          messages: [
+            {
+              role: 'user',
+              content: `
+                Analyze the HTML content from the EigenLayer documentation homepage and extract the main documentation sections and their URLs.
+                Format your response as a list of sections with their corresponding paths.
+                
+                HTML content:
+                ---
+                ${htmlContent}
+                ---
+                
+                Provide a structured list of the main documentation sections available on the EigenLayer docs site.
+              `
+            }
+          ]
+        })
+      });
+      
+      const claudeJson = await claudeResponse.json();
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: claudeJson.content[0].text,
+          },
+        ],
+      };
+    } catch (err) {
+      console.error("Error:", err);
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Error listing EigenLayer documentation sections: ${err.message}`,
+          },
+        ],
+      };
+    }
+  },
+);
+
+
+// For local development using stdio
+if (process.env.NODE_ENV !== 'production') {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}
+
+// Export the server instance for use in Vercel API routes
+export { server };
