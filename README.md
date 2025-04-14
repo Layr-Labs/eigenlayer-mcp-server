@@ -27,3 +27,9 @@ npm start
 
 Or test with inspector : `npx @modelcontextprotocol/inspector node public/index.js`
 Additional notes [here](https://github.com/modelcontextprotocol/inspector).
+
+
+## Add to Claude Code
+
+`claude mcp add`
+(then follow on screen instructions)
