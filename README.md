@@ -9,4 +9,4 @@ A Model Context Protocol (MCP) server for EigenLayer documentation, designed to 
 
 Inspired by initial testing [here](https://x.com/dabit3/status/1902502245855383724).
 
-Initially cloned from [MCP Typescript SDK](https://github.com/modelcontextprotocol/typescript-sdk). The [Vercel MCP template](https://vercel.com/templates/other/model-context-protocol-mcp-with-vercel-functions) involved more complexity than we wanted for the initial version.
+Initially cloned from [MCP User Guide](https://modelcontextprotocol.io/quickstart/server#node). The [Vercel MCP template](https://vercel.com/templates/other/model-context-protocol-mcp-with-vercel-functions) involved more complexity than we wanted for the initial version.
