@@ -6,34 +6,7 @@ A Model Context Protocol (MCP) server for EigenLayer documentation, designed to 
 
 - Provides EigenLayer documentation to Claude or other AI assistants via MCP
 - Runs as a standalone server locally or as a serverless function on Vercel
-- Includes tools for:
-  - Querying EigenLayer documentation
-  - Listing documentation sections
 
 Inspired by initial testing [here](https://x.com/dabit3/status/1902502245855383724).
 
-
-
-
-# Example MCP Server built on Next.js
-
-https://github.com/vercel-labs/mcp-for-next.js
-
-## Usage
-
-Update `app/mcp.ts` with your tools, prompts, and resources following the [MCP TypeScript SDK documentation](https://github.com/modelcontextprotocol/typescript-sdk/tree/main?tab=readme-ov-file#server).
-
-## Notes for running on Vercel
-
-- Requires a Redis attached to the project under `process.env.REDIS_URL`
-- Make sure you have [Fluid compute](https://vercel.com/docs/functions/fluid-compute) enabled for efficient execution
-- After enabling Fluid compute, open `app/sse/route.ts` and adjust max duration to 800 if you using a Vercel Pro or Enterprise account
-- [Deploy the Next.js MCP template](https://vercel.com/templates/next.js/model-context-protocol-mcp-with-next-js)
-
-## Sample Client
-
-`script/test-client.mjs` contains a sample client to try invocations.
-
-```sh
-node scripts/test-client.mjs https://mcp-for-next-js.vercel.app
-```
+Initially cloned from [MCP Typescript SDK](https://github.com/modelcontextprotocol/typescript-sdk). The [Vercel MCP template](https://vercel.com/templates/other/model-context-protocol-mcp-with-vercel-functions) involved more complexity than we wanted for the initial version.
