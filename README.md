@@ -20,10 +20,10 @@ npm install
 
 2. Build with: `npm run build`
 
-3. 
-a. Run the server:
+3.  Run the server
 ```bash
 npm start
 ```
-b. Test with inspector : `npx @modelcontextprotocol/inspector node public/index.js`
+
+Or test with inspector : `npx @modelcontextprotocol/inspector node public/index.js`
 Additional notes [here](https://github.com/modelcontextprotocol/inspector).

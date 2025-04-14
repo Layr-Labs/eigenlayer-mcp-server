@@ -2,10 +2,11 @@
   "name": "eigenlayer-mcp-server",
   "version": "1.0.0",
   "description": "A Model Context Protocol (MCP) server for EigenLayer documentation, designed to run on Vercel.",
-  "main": "index.js",
+  "main": "public/index.js",
   "scripts": {
     "build": "tsc && mkdir -p public/static && cp -r static/* public/static/ && chmod 755 public/index.js",
-    "start": "node public/index.js"
+    "start": "node public/index.js",
+    "vercel-build": "npm run build"
   },
   "keywords": [],
   "author": "",
