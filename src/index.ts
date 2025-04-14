@@ -75,7 +75,7 @@ const server = new McpServer({
           name: resource.name,
           description: resource.description,
           type: "text",
-          content: fs.readFileSync(path.join(__dirname, 'static', resource.file), 'utf-8')
+          content: fs.readFileSync(path.join(__dirname, '..', 'static', resource.file), 'utf-8')
         }
       ])
     ),
@@ -94,7 +94,7 @@ resources.forEach(resource => {
         contents: [
           {
             uri: resource.url,
-            text: fs.readFileSync(path.join(__dirname, 'static', resource.file), 'utf-8'),
+            text: fs.readFileSync(path.join(__dirname, '..', 'static', resource.file), 'utf-8'),
           },
         ],
       };

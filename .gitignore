@@ -1,7 +1,6 @@
-/node_modules
+node_modules
+.DS_Store
+public
 package-lock.json
 .vercel
 
-/.next/cache
-/.next
-/build

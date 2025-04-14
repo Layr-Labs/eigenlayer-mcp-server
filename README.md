@@ -11,14 +11,19 @@ Inspired by initial testing [here](https://x.com/dabit3/status/19025022458553837
 
 Initially cloned from [MCP User Guide](https://modelcontextprotocol.io/quickstart/server#node). The [Vercel MCP template](https://vercel.com/templates/other/model-context-protocol-mcp-with-vercel-functions) involved more complexity than we wanted for the initial version.
 
+## Setup
 
-## Local Testing Instructions
+1. Install dependencies:
+```bash
+npm install
+```
 
-Build with: `npm run build`
+2. Build with: `npm run build`
 
-Testing guide here:  [Testing your server with Claude for Desktop](https://modelcontextprotocol.io/quickstart/server#testing-your-server-with-claude-for-desktop)
-
-Test locally with:  node [path]/eigenlayer-mcp-server/build/index.js
-
-Test with inspector : `npx @modelcontextprotocol/inspector node build/index.js`
+3. 
+a. Run the server:
+```bash
+npm start
+```
+b. Test with inspector : `npx @modelcontextprotocol/inspector node public/index.js`
 Additional notes [here](https://github.com/modelcontextprotocol/inspector).
