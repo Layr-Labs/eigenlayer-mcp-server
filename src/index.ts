@@ -1,5 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+
 import fs from 'fs';
 import path from 'path';
 
@@ -14,7 +15,7 @@ const server = new McpServer({
         name: "EigenLayer Blog Articles",
         description: "A comprehensive collection of all EigenLayer blog articles combined into a single document",
         type: "text",
-        content: fs.readFileSync(path.join(process.cwd(), 'library', 'eigenlayer-blog-all-articles-combined.md'), 'utf-8')
+        content: fs.readFileSync('./library/eigenlayer-blog-all-articles-combined.md', 'utf-8')
       }
     },
     tools: {},
@@ -25,7 +26,7 @@ const server = new McpServer({
 async function main() {
     const transport = new StdioServerTransport();
     await server.connect(transport);
-    console.error("Weather MCP Server running on stdio");
+    console.error("EigenLayer MCP Server running on stdio");
   }
   
   main().catch((error) => {

@@ -4,7 +4,7 @@
   "description": "A Model Context Protocol (MCP) server for EigenLayer documentation, designed to run on Vercel.",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && chmod 755 build/index.js"
+    "build": "tsc && mkdir -p build/library && cp -r library/* build/library/ && chmod 755 build/index.js"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +19,9 @@
   "devDependencies": {
     "@types/node": "^22.14.1",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "zod": "^3.24.2"
   }
 }
