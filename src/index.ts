@@ -15,7 +15,7 @@ const server = new McpServer({
         name: "EigenLayer Blog Articles",
         description: "A comprehensive collection of all EigenLayer blog articles combined into a single document",
         type: "text",
-        content: fs.readFileSync('./library/eigenlayer-blog-all-articles-combined.md', 'utf-8')
+        content: fs.readFileSync(path.resolve(process.cwd(), 'static', 'eigenlayer-blog-all-articles-combined.md'), 'utf-8')
       }
     },
     tools: {},

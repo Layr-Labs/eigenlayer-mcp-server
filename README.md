@@ -16,4 +16,6 @@ Initially cloned from [MCP User Guide](https://modelcontextprotocol.io/quickstar
 
 Build with: `npm run build`
 
+Test locally with:  node [path]/eigenlayer-mcp-server/build/index.js
+
 Here:  [Testing your server with Claude for Desktop](https://modelcontextprotocol.io/quickstart/server#testing-your-server-with-claude-for-desktop)
