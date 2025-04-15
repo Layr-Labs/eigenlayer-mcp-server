@@ -1,7 +1,6 @@
 import { createServerResponseAdapter } from "@/lib/server-response-adapter";
 import { mcpHandler } from "../mcp";
 
-export const runtime = 'nodejs';
 export const maxDuration = 60;
 
 export async function GET(req: Request) {
@@ -12,4 +11,5 @@ export async function GET(req: Request) {
     console.log('SSE connection established');
     mcpHandler(req, res);
   });
+  
 }
