@@ -1,14 +1,7 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import {GetPromptResult, ListPromptsRequestSchema, CallToolResult, ReadResourceResult} from "@modelcontextprotocol/sdk/types.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { z } from 'zod';
-
-// Get the current file's directory in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { z } from "zod";
+import { initializeMcpApiHandler } from "../lib/mcp-api-handler";
+import * as fs from 'fs';
+import * as path from 'path';
 
 // Define all resources in a single array
 const resources = [
@@ -63,52 +56,39 @@ const resources = [
   }
 ];
 
-// Create server instance
-const server = new McpServer({
-  name: "eigenlayer-mcp-server",
-  version: "1.0.0",
-  capabilities: {
-    resources: Object.fromEntries(
-      resources.map(resource => [
+export const mcpHandler = initializeMcpApiHandler(
+  (server) => {
+    resources.forEach(resource => {
+      server.resource(
         resource.id,
-        {
-          name: resource.name,
-          description: resource.description,
-          type: "text",
-          content: fs.readFileSync(path.join(__dirname, '..', 'static', resource.file), 'utf-8')
-        }
-      ])
-    ),
-    tools: {}
-  },
-});
-
-// Register all resources
-resources.forEach(resource => {
-  server.resource(
-    resource.id,
-    resource.url,
-    { mimeType: 'text/plain' },
-    async (): Promise<ReadResourceResult> => {
-      return {
-        contents: [
-          {
+        resource.url,
+        { mimeType: 'text/plain' },
+        async (uri) => ({
+          contents: [{
             uri: resource.url,
             text: fs.readFileSync(path.join(__dirname, '..', 'static', resource.file), 'utf-8'),
           },
         ],
-      };
-    }
-  );
-});
-
-async function main() {
-    const transport = new StdioServerTransport();
-    await server.connect(transport);
-    console.error("EigenLayer MCP Server running on stdio");
-}
-
-main().catch((error) => {
-  console.error("Fatal error in main():", error);
-  process.exit(1);
-});
+        })
+        
+      );
+    });
+    
+  },
+  {
+    capabilities: {
+      resources: Object.fromEntries(
+        resources.map(resource => [
+          resource.id,
+          {
+            name: resource.name,
+            description: resource.description,
+            type: "text",
+            content: fs.readFileSync(path.join(__dirname, '..', 'static', resource.file), 'utf-8')
+          }
+        ])
+      ),
+      tools: {}
+    },
+  }
+);
