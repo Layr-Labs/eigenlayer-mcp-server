@@ -1,17 +1,6 @@
 {
   "version": 2,
   "regions": ["iad1"],
-  "functions": {
-    "app/sse/route.ts": {
-      "runtime": "nodejs18.x"
-    },
-    "app/message/route.ts": {
-      "runtime": "nodejs18.x"
-    },
-    "app/debug/route.ts": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "headers": [
     {
       "source": "/(.*)",
