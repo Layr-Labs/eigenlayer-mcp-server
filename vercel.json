@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "regions": ["iad1"],
+  "functions": {
+    "app/sse/route.ts": {
+      "runtime": "nodejs18.x"
+    },
+    "app/message/route.ts": {
+      "runtime": "nodejs18.x"
+    },
+    "app/debug/route.ts": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    }
+  ]
+}
