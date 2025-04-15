@@ -11,16 +11,27 @@ Inspired by initial testing [here](https://x.com/dabit3/status/19025022458553837
 Initially cloned from [MCP User Guide](https://modelcontextprotocol.io/quickstart/server#node). The [Vercel MCP template](https://vercel.com/templates/other/model-context-protocol-mcp-with-vercel-functions) involved more complexity than we wanted for the initial version.
 
 
+# Build, Run, Testing Locally
 
-# Testing
+In terminal window 1
+```
+pnpm install
+pnpm dev
+```
 
-Test with inspector : `npx @modelcontextprotocol/inspector node public/index.js`
+In terminal window 2
+Test with MCP Inspector
+```
+npx @modelcontextprotocol/inspector node public/index.js
+```
 Additional notes [here](https://github.com/modelcontextprotocol/inspector).
 
 
 ## Add to Claude Code
 
-`claude mcp add`
+```
+claude mcp add
+```
 (then follow on screen instructions)
 
 ## Sample Client
