@@ -66,7 +66,7 @@ export const mcpHandler = initializeMcpApiHandler(
         async (uri) => ({
           contents: [{
             uri: resource.url,
-            text: fs.readFileSync(path.join(__dirname, '..', 'static', resource.file), 'utf-8'),
+            text: fs.readFileSync(path.join(process.cwd(), 'public', 'static', resource.file), 'utf-8'),
           },
         ],
         })
@@ -84,7 +84,7 @@ export const mcpHandler = initializeMcpApiHandler(
             name: resource.name,
             description: resource.description,
             type: "text",
-            content: fs.readFileSync(path.join(__dirname, '..', 'static', resource.file), 'utf-8')
+            content: fs.readFileSync(path.join(process.cwd(), 'public', 'static', resource.file), 'utf-8')
           }
         ])
       ),
