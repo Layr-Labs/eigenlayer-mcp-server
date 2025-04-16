@@ -10,6 +10,13 @@ Inspired by initial testing [here](https://x.com/dabit3/status/19025022458553837
 Cloned from [Vercel Next.js MCP template](https://vercel.com/templates/next.js/model-context-protocol-mcp-with-next-js)
 
 
+# Test the public endpoint with Claude:
+
+1) Add the live URL to Claude via the following command (in any folder):  
+   ```claude mcp add --transport sse eigenlayer-mcp-server https://eigenlayer-mcp-server-sand.vercel.app/sse```
+2) Install [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview). Run command `claude` to enter Claude Code and confirm the  mcp server is added
+3) Test with a query like "Can you explain how EigenLayer's restaking mechanism works?"
+
 
 # Build, Run, Testing Locally
 
