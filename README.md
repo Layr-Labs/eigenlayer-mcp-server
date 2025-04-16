@@ -48,9 +48,10 @@ node scripts/test-client.mjs http://localhost:3000
 ```
 
 
-## Notes for running on Vercel
+## Security Bugs
+Please report security vulnerabilities to security@eigenlabs.org. Do NOT report security bugs via Github Issues.
 
-- Requires a Redis attached to the project under `process.env.REDIS_URL`
-- Make sure you have [Fluid compute](https://vercel.com/docs/functions/fluid-compute) enabled for efficient execution
-- After enabling Fluid compute, open `app/sse/route.ts` and adjust max duration to 800 if you using a Vercel Pro or Enterprise account
+## Disclaimer
+🚧 EigenLayer MCP Server is under active development and has not been audited. EigenLayer MCP Server is rapidly being upgraded, features may be added, removed or otherwise improved or modified and interfaces will have breaking changes. EigenLayer MCP Server should be used only for testing purposes and not in production. EigenLayer MCP Server is provided "as is" and Eigen Labs, Inc. does not guarantee its functionality or provide support for its use in production. 🚧
+
 
