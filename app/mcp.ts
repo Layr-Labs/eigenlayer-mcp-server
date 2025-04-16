@@ -1,4 +1,3 @@
-
 import { initializeMcpApiHandler } from "../lib/mcp-api-handler";
 import { ReadResourceResult } from "@modelcontextprotocol/sdk/types.js";
 import * as fs from 'fs';
@@ -65,14 +64,12 @@ export const mcpHandler = initializeMcpApiHandler(
         resource.id,
         resource.url,
         { mimeType: 'text/plain' },
-        async (uri) => ({
+        (uri) => ({
           contents: [{
             uri: resource.url,
             text: fs.readFileSync(path.join(process.cwd(), 'public', 'static', resource.file), 'utf-8'),
-          },
-        ],
+          }]
         })
-        
       );
     });
     
