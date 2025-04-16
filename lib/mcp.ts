@@ -1,4 +1,4 @@
-import { initializeMcpApiHandler } from "../lib/mcp-api-handler";
+import { initializeMcpApiHandler } from "@/lib/mcp-api-handler";
 import { ReadResourceResult } from "@modelcontextprotocol/sdk/types.js";
 import * as fs from 'fs';
 import * as path from 'path';
@@ -79,4 +79,4 @@ export const mcpHandler = initializeMcpApiHandler(
     "resources": {} // Neither feature supported
   }
 }
-);
+); 
