@@ -9,7 +9,7 @@ Cloned from [Vercel Next.js MCP template](https://vercel.com/templates/next.js/m
 
 ## Access
 
-**Public URL:** http://mcp.eigenlayer.xyz/sse
+**Public URL:** https://mcp.eigenlayer.xyz/sse
 
 ## Features
 
@@ -27,7 +27,7 @@ Cloned from [Vercel Next.js MCP template](https://vercel.com/templates/next.js/m
 # Test the public endpoint with Claude:
 
 1) Add the live URL to Claude via the following command (in any folder):  
-   ```claude mcp add --transport sse eigenlayer-mcp-server http://mcp.eigenlayer.xyz/sse```
+   ```claude mcp add --transport sse eigenlayer-mcp-server https://mcp.eigenlayer.xyz/sse```
 2) Install [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview). Run command `claude` to enter Claude Code and confirm the  mcp server is added
 3) Test with a query like "Can you explain how EigenLayer's restaking mechanism works?"
 
