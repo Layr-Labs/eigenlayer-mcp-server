@@ -7,8 +7,13 @@ Cloned from [Vercel Next.js MCP template](https://vercel.com/templates/next.js/m
 - Provides EigenLayer documentation, source code, and useful content to Claude and other AI assistants via [MCP protocol](https://modelcontextprotocol.io/introduction).
 - Runs as a standalone server locally or hosted.
 
-## Resources
-The following resource endpoints are currently available:
+## Access
+
+**Public URL:** http://mcp.eigenlayer.xyz/sse
+
+## Features
+
+**Resources:** The following resource endpoints are currently available:
 - eigenlayer-blog-all-articles-combined
 - eigenlayer-docs-overview
 - eigenlayer-docs-developer
@@ -16,18 +21,16 @@ The following resource endpoints are currently available:
 - eigenlayer-middleware-src
 - eigenlayer-contracts-src
 
-
-## Tools
-No tool endpoints are currently available.
-
+**Tools:** no tool endpoints are currently exposed. They will likely be added in future releases.
 
 
 # Test the public endpoint with Claude:
 
 1) Add the live URL to Claude via the following command (in any folder):  
-   ```claude mcp add --transport sse eigenlayer-mcp-server https://eigenlayer-mcp-server-sand.vercel.app/sse```
+   ```claude mcp add --transport sse eigenlayer-mcp-server http://mcp.eigenlayer.xyz/sse```
 2) Install [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview). Run command `claude` to enter Claude Code and confirm the  mcp server is added
 3) Test with a query like "Can you explain how EigenLayer's restaking mechanism works?"
+
 
 
 # Build, Run, Testing Locally
