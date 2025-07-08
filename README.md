@@ -1,5 +1,9 @@
-# EigenLayer MCP Server built on Next.js
+# 🚨 Repository Archived – Deprecated as of July 8 2025
 
+**Note:** This repository is no longer maintained and has been archived. This project was a point in time experiment, is now considered **deprecated** and is no longer receiving updates. 
+
+
+# EigenLayer MCP Server built on Next.js
 
 ## Features
 
